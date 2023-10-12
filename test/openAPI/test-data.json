@@ -1,8 +1,8 @@
 {
   "data": [
     {
-      "GovStackInstance": "identifier",
-      "memberClass": "identifier",
+      "GovStackInstance": "SANDBOX",
+      "memberClass": "IDENTIFIER",
       "memberCode": "alp4aNum3r1c",
       "applicationCode": "alp4aNum3r1c",
       "service": [
@@ -19,8 +19,8 @@
       ]
     },
     {
-      "GovStackInstance": "a11a11a11a",
-      "memberClass": "asd2211a",
+      "GovStackInstance": "SANDBOX",
+      "memberClass": "ASD2211A",
       "memberCode": "12as12",
       "applicationCode": "m3mb3rc0d3",
       "service": [
@@ -32,8 +32,8 @@
       ]
     },
     {
-      "GovStackInstance": "a552example",
-      "memberClass": "zzz321a",
+      "GovStackInstance": "SANDBOX",
+      "memberClass": "ZZZ321A",
       "memberCode": "m3mb3rc0d3",
       "applicationCode": "aa15",
       "service": [
@@ -45,8 +45,8 @@
       ]
     },
     {
-      "GovStackInstance": "valid1dentifi3r",
-      "memberClass": "rand0mid3nt",
+      "GovStackInstance": "SANDBOX",
+      "memberClass": "RAND0MID3NT",
       "memberCode": "str1ng",
       "applicationCode": "azxcv55",
       "service": [

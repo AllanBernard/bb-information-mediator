@@ -14,11 +14,11 @@ chai.use(require('chai-json-schema'));
 
 let specAllowedMethods;
 
-const baseUrl = localhost + allowedMethodsEndpoint;
+const baseUrl = localhost + "r1/" + allowedMethodsEndpoint; // /r1 is the protocol version, required when making calls to subsystems/services: https://docs.x-road.global/Protocols/pr-rest_x-road_message_protocol_for_rest.html#41-rest-interface
 const endpointTag = { tags: `@endpoint=/${allowedMethodsEndpoint}` };
 
 Before(endpointTag, () => {
-  specAllowedMethods = spec();
+  specAllowedMethods = spec().withHeaders(acceptHeader.key, acceptHeader.value); // Needs to request json, otherwise default xml response is given by x-road
 });
 
 // Scenario: Successfully retrieved the list of allowed REST services and endpoints for a service provider smoke type test
@@ -76,7 +76,7 @@ Then(
 Then('The allowedMethods endpoint response should match json schema', () =>
   chai
     .expect(specAllowedMethods._response.json)
-    .to.be.jsonSchema(responseSchema)
+    .to.be.jsonSchema(responseSchema.properties.member.items.properties) // The schema is different for endpoints. Overall schema is given but current endpoint only responds with a subset of the given example schema. https://www.x-tee.ee/docs/live/xroad/pr-mrest_x-road_service_metadata_protocol_for_rest.html#b2-allowedmethods-response
 );
 
 // Scenario Outline: Successfully retrieved the list of allowed REST services and endpoints for a service provider

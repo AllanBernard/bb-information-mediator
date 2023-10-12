@@ -1,5 +1,5 @@
 module.exports = {
-  localhost: 'http://localhost:3366/',
+  localhost: 'https://ss2.im.sandbox-playground.com:8443/',
   listClientsEndpoint: 'listClients',
   getOpenApiEndpoint:
     '{GovStackInstance}/{memberClass}/{memberCode}/{applicationCode}/getOpenAPI',
@@ -9,15 +9,15 @@ module.exports = {
     '{GovStackInstance}/{memberClass}/{memberCode}/{applicationCode}/listMethods',
   defaultExpectedResponseTime: 15000,
   getOpenApiExpectedSchema: {
-    type: 'string',
+    type: 'object',
   },
   acceptHeader: {
-    key: 'content-type',
-    value: 'application/json; charset=utf-8',
+    key: 'Accept',
+    value: 'application/json;charset=utf-8',
   },
   header: {
-    key: 'Information-Mediator-Client',
-    value: 'eGovStack/GOV/90000009/digitalregistries',
+    key: 'X-Road-Client',
+    value: 'SANDBOX/GOV/90000009/digitalregistries',
   },
   responseSchema: {
     type: 'object',

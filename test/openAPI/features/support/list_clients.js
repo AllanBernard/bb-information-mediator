@@ -11,13 +11,14 @@ const {
 
 chai.use(require('chai-json-schema'));
 
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 let specListClients;
 
 const baseUrl = localhost + listClientsEndpoint;
 const endpointTag = { tags: `@endpoint=/${listClientsEndpoint}` };
 
 Before(endpointTag, () => {
-  specListClients = spec();
+  specListClients = spec().withHeaders(acceptHeader.key, acceptHeader.value);
 });
 
 // Scenario: Successfully retrieved the list of Clients of GovStack smoke type test
@@ -61,7 +62,7 @@ Then(
 );
 
 Then('The listClients endpoint response should match json schema', () =>
-  chai.expect(specListClients._response.json).to.be.jsonSchema(responseSchema)
+  chai.expect(specListClients._response.json).to.be.jsonSchema(responseSchema.properties.member.items.properties.endpointList.properties)
 );
 
 // Scenario Outline: Successfully retrieved the list of clients from GovStack

@@ -2,6 +2,7 @@ const chai = require('chai');
 const { spec } = require('pactum');
 const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const {
+  header,
   localhost,
   responseSchema,
   listMethodsEndpoint,
@@ -13,11 +14,11 @@ chai.use(require('chai-json-schema'));
 
 let specListMethods;
 
-const baseUrl = localhost + listMethodsEndpoint;
+const baseUrl = localhost + "r1/" + listMethodsEndpoint;
 const endpointTag = { tags: `@endpoint=/${listMethodsEndpoint}` };
 
 Before(endpointTag, () => {
-  specListMethods = spec();
+  specListMethods = spec().withHeaders(acceptHeader.key, acceptHeader.value);
 });
 
 // Scenario: Successfully retrieved the list of REST services and endpoints for a service provider smoke type test
@@ -31,7 +32,7 @@ When(
   (serviceId, GovStackInstance, memberClass, memberCode, applicationCode, XGovStackClient) =>
     specListMethods
       .get(baseUrl)
-      .withHeaders(XGovStackClient, XGovStackClient)
+      .withHeaders(header.key, header.value)
       .withQueryParams({
         serviceId: serviceId,
       })
@@ -69,7 +70,7 @@ Then(
 );
 
 Then('The listMethods endpoint response should match json schema', () =>
-  chai.expect(specListMethods._response.json).to.be.jsonSchema(responseSchema)
+  chai.expect(specListMethods._response.json).to.be.jsonSchema(responseSchema.properties.member.items.properties)  // The schema is different for endpoints. Overall schema is given but current endpoint only responds with a subset of the given example schema. https://www.x-tee.ee/docs/live/xroad/pr-mrest_x-road_service_metadata_protocol_for_rest.html#b1-listmethods-response
 );
 
 // Scenario Outline: Successfully retrieved the list of REST services and endpoints for a service provider

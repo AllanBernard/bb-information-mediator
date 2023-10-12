@@ -2,7 +2,8 @@
   "name": "bb-information-mediator-api-tests",
   "version": "0.1.0",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "cucumber-js",
+    "test-export-html": "cucumber-js --format html:result/result.html"
   },
   "devDependencies": {
     "@cucumber/cucumber": "8.10.0",

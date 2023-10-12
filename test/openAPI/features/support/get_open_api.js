@@ -11,7 +11,7 @@ const {
 chai.use(require('chai-json-schema'));
 
 let specGetOpenAPI;
-const baseUrl = localhost + getOpenApiEndpoint;
+const baseUrl = localhost + "r1/" + getOpenApiEndpoint;
 const tag = { tags: `@endpoint=/${getOpenApiEndpoint}` };
 
 Before(tag, () => {
@@ -75,6 +75,11 @@ Then('The response header content-type should be {string}', expected =>
 // Scenario Outline: Unable to retrieve the openAPI description of the specified REST service of an invalid path parameter
 Then('The response should have status 400', () =>
   specGetOpenAPI.response().to.have.status(400)
+);
+
+// Scenario Outline: Unable to retrieve the openAPI description of the specified REST service of an invalid path parameter
+Then('The response should have status 500', () =>
+  specGetOpenAPI.response().to.have.status(500)
 );
 
 // Scenario Outline: Unable to retrieve the openAPI description of the specified REST service of an invalid serviceCode parameter
